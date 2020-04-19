@@ -30,6 +30,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+SITE_ID = 1
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
+    'taggit',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'django.contrib.postgres',
 ]
 
 MIDDLEWARE = [
@@ -73,14 +79,23 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+'''
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'blog',
+        'USER': 'postgres',
+        'PASSWORD': 'toto1234',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -119,3 +134,47 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# send email
+# EMAIL_HOST: 'smtp.gmail.com' 
+# EMAIL_PORT: 587 
+# EMAIL_HOST_USER: 'lvdesign2020@gmail.com' 
+# EMAIL_HOST_PASSWORD: 'LV20000ok*' 
+# EMAIL_USE_TLS: True 
+
+'''
+EMAIL_HOST: 'localhost' 
+# #The SMTP server host; the default is localhost
+EMAIL_PORT: 25 
+#The SMTP port; the default is 25
+EMAIL_HOST_USER: '' 
+#The username for the SMTP server
+EMAIL_HOST_PASSWORD: '' 
+#The password for the SMTP server
+#
+EMAIL_USE_TLS: False 
+#Whether to use a Transport Layer Security (TLS) secure connection
+EMAIL_USE_SSL: False
+#Whether to use an implicit TLS secure connection
+'''
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+'''
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'your_account@gmail.com'
+EMAIL_HOST_PASSWORD = 'your_password'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+'''
+
+'''
+# send email
+EMAIL_HOST: 'smtp.gmail.com' #The SMTP server host; the default is localhost
+EMAIL_PORT: 587 #The SMTP port; the default is 25
+EMAIL_HOST_USER: 'lvdesign2020@gmail.com' #The username for the SMTP server
+EMAIL_HOST_PASSWORD: 'LV20000ok*' #The password for the SMTP server
+EMAIL_USE_TLS: True #Whether to use a Transport Layer Security (TLS) secure connection
+# EMAIL_USE_SSL: True #Whether to use an implicit TLS secure connection
+'''
